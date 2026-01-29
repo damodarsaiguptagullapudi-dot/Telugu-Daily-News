@@ -1,0 +1,54 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f5f5f5;
+}
+
+header {
+  background: #222;
+  color: white;
+  padding: 15px;
+  text-align: center;
+}
+
+.tagline {
+  font-size: 14px;
+  color: #ccc;
+}
+
+nav {
+  background: #444;
+  padding: 10px;
+  text-align: center;
+}
+
+nav a {
+  color: white;
+  margin: 10px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.news-card {
+  background: white;
+  margin: 15px;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.news-card h2 {
+  color: #222;
+}
+
+.meta {
+  font-size: 12px;
+  color: gray;
+}
+
+footer {
+  background: #222;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  margin-top: 20px;
+}
