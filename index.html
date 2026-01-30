@@ -59,3 +59,30 @@
 </html>
 <script src="script.js"></script>
 <script src="script.js"></script>
+<script>
+function readLatestNews(){
+  // First news lo title & content read cheyyadam
+  let title = document.querySelector(".title").innerText;
+  let content = document.querySelector(".content").innerText;
+
+  let speech = new SpeechSynthesisUtterance(title + ". " + content);
+
+  // Language selection
+  let lang = document.getElementById("langSelect").value;
+  speech.lang = (lang === "en") ? "en-US" : "te-IN";
+
+  window.speechSynthesis.speak(speech);
+}
+
+function changeLanguage(){
+  let lang = document.getElementById("langSelect").value;
+
+  if(lang === "en"){
+    document.querySelector(".title").innerText = "T20 World Cup 2026 Latest Update";
+    document.querySelector(".content").innerText = "T20 World Cup 2026 is coming soon. Teams are preparing hard.";
+  } else {
+    document.querySelector(".title").innerText = "T20 వరల్డ్ కప్ 2026 తాజా వార్తలు";
+    document.querySelector(".content").innerText = "T20 వరల్డ్ కప్ 2026 త్వరలో ప్రారంభం కానుంది. జట్లు సిద్ధమవుతున్నాయి.";
+  }
+}
+</script>
