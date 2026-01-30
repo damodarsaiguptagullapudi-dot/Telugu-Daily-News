@@ -2,10 +2,15 @@
 <html lang="te">
 <head>
   <meta charset="UTF-8">
+
+  <!-- Google Site Verification -->
+  <meta name="google-site-verification" content="e70E6N_V9iN-PB2QS-aj6hVUtyP-PyyD6jldXGfsrsw" />
+
   <title>Telugu Daily News - Latest Updates in Telugu</title>
   <meta name="description" content="Latest news and updates in Telugu | Managed by Damodar">
   <meta name="keywords" content="Telugu news, cricket news, daily updates, Damodar">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -33,13 +38,15 @@
 </header>
 
 <main id="news-container">
-<article class="news-card">
-  <img src="https://example.com/sanju-news.jpg" alt="Sanju Samson" class="news-photo">
-  <h2 class="title">Sanju Samson shines in latest match</h2>
-  <p class="meta"><span class="author">By Damodar</span> | 30 Jan 2026</p>
-  <p class="content">Sanju Samson scored a brilliant half-century, helping India secure a thrilling victory...</p>
-</article>
-  
+
+  <!-- TOP NEWS with PHOTO -->
+  <article class="news-card">
+    <img src="https://example.com/sanju-news.jpg" alt="Sanju Samson" class="news-photo">
+    <h2 class="title">Sanju Samson shines in latest match</h2>
+    <p class="meta"><span class="author">By Damodar</span> | 30 Jan 2026</p>
+    <p class="content">Sanju Samson scored a brilliant half-century, helping India secure a thrilling victory...</p>
+  </article>
+
   <!-- Latest news -->
   <article class="news-card">
     <h2 class="title">T20 World Cup 2026: Exciting Matches Ahead</h2>
@@ -47,7 +54,7 @@
     <p class="content">The T20 World Cup 2026 is around the corner! Top teams are preparing to battle for the trophy. Stay tuned for latest match updates, team news, and highlights!</p>
   </article>
 
-  <!-- Old news examples -->
+  <!-- Old news -->
   <article class="news-card">
     <h2>India wins cricket match today</h2>
     <p class="meta">By Damodar | 29 Jan 2026</p>
@@ -66,7 +73,7 @@
   <p>© 2026 Telugu Daily News | Managed by Damodar</p>
 </footer>
 
-<!-- JS Code for Language + Voice -->
+<!-- JS for Voice + Language -->
 <script>
 function readLatestNews(){
   let title = document.querySelector(".title").innerText;
@@ -84,11 +91,11 @@ function changeLanguage(){
   let lang = document.getElementById("langSelect").value;
 
   if(lang === "en"){
-    document.querySelector(".title").innerText = "T20 World Cup 2026: Exciting Matches Ahead";
-    document.querySelector(".content").innerText = "The T20 World Cup 2026 is around the corner! Top teams are preparing to battle for the trophy. Stay tuned for latest match updates, team news, and highlights!";
+    document.querySelector(".title").innerText = "Sanju Samson shines in latest match";
+    document.querySelector(".content").innerText = "Sanju Samson scored a brilliant half-century, helping India secure a thrilling victory...";
   } else {
-    document.querySelector(".title").innerText = "T20 వరల్డ్ కప్ 2026: ఉత్సాహభరితమైన మ్యాచ్‌లు ముందుగా";
-    document.querySelector(".content").innerText = "T20 వరల్డ్ కప్ 2026 త్వరలో ప్రారంభం! అగ్రజట్లు ట్రోఫీ కోసం సిద్దంగా ఉన్నారు. తాజా మ్యాచ్ అప్‌డేట్స్, జట్టు వార్తలు, హైలైట్స్ కోసం ఉండండి!";
+    document.querySelector(".title").innerText = "సంజూ శాంసన్ తాజా మ్యాచ్‌లో మెరిశాడు";
+    document.querySelector(".content").innerText = "సంజూ శాంసన్ అర్ధశతకం చేసి భారత్‌కు విజయం అందించాడు...";
   }
 }
 </script>
