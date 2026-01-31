@@ -4,6 +4,7 @@ body {
   background: #f5f5f5;
 }
 
+/* HEADER */
 header {
   background: #222;
   color: white;
@@ -11,40 +12,101 @@ header {
   text-align: center;
 }
 
+/* LOGO */
+.logo {
+  font-size: 26px;
+  font-weight: bold;
+  color: #ff9800;
+}
+
+/* TAGLINE */
 .tagline {
   font-size: 14px;
   color: #ccc;
 }
 
+/* NAV - CATEGORY BUTTONS */
 nav {
   background: #444;
   padding: 10px;
   text-align: center;
 }
 
-nav a {
+nav button {
+  background: #ff9800;
   color: white;
-  margin: 10px;
-  text-decoration: none;
-  font-weight: bold;
+  border: none;
+  padding: 10px 15px;
+  margin: 5px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
 }
 
+nav button:hover {
+  background: #e68900;
+}
+
+/* CONTROLS (Language + Voice) */
+.controls {
+  margin-top: 10px;
+}
+
+.controls select,
+.controls button {
+  padding: 10px 14px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: none;
+  margin: 5px;
+  cursor: pointer;
+}
+
+/* NEWS CARD */
 .news-card {
   background: white;
   margin: 15px;
   padding: 15px;
-  border-radius: 5px;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
 }
 
 .news-card h2 {
   color: #222;
 }
 
+/* META */
 .meta {
   font-size: 12px;
   color: gray;
 }
 
+/* NEWS IMAGE */
+.news-photo {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  margin-bottom: 10px;
+  border-radius: 6px;
+}
+
+/* SHARE BUTTONS (future ready) */
+.share-buttons {
+  margin-top: 10px;
+}
+
+.share-buttons button {
+  background: #25D366;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 5px;
+  margin-right: 5px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+/* FOOTER */
 footer {
   background: #222;
   color: white;
@@ -52,10 +114,21 @@ footer {
   padding: 10px;
   margin-top: 20px;
 }
-.news-photo {
-  width: 100%;
-  max-height: 200px;
-  object-fit: cover;
-  margin-bottom: 10px;
-  border-radius: 5px;
+
+/* MOBILE FRIENDLY */
+@media (max-width: 600px) {
+  nav button {
+    width: 45%;
+    margin: 5px 2px;
+  }
+
+  .controls select,
+  .controls button {
+    width: 90%;
+  }
+
+  .logo {
+    font-size: 22px;
+  }
 }
+
