@@ -19,12 +19,12 @@
   <h1>Telugu Daily News</h1>
   <p class="tagline">Latest Updates in Telugu</p>
 
-  <!-- Nav Links -->
+  <!-- CATEGORY NAV -->
   <nav>
-    <a href="#">Home</a>
-    <a href="#">Cricket</a>
-    <a href="#">National</a>
-    <a href="#">Technology</a>
+    <button onclick="filterNews('all')">News</button>
+    <button onclick="filterNews('cricket')">Cricket</button>
+    <button onclick="filterNews('technology')">Technology</button>
+    <button onclick="filterNews('local')">Local</button>
   </nav>
 
   <!-- Language + Voice Buttons -->
@@ -39,32 +39,33 @@
 
 <main id="news-container">
 
-  <!-- TOP NEWS with PHOTO -->
-  <article class="news-card">
+  <!-- CRICKET NEWS -->
+  <article class="news-card" data-category="cricket">
     <img src="https://example.com/sanju-news.jpg" alt="Sanju Samson" class="news-photo">
     <h2 class="title">Sanju Samson shines in latest match</h2>
-    <p class="meta"><span class="author">By Damodar</span> | 30 Jan 2026</p>
+    <p class="meta">By Damodar | 30 Jan 2026</p>
     <p class="content">Sanju Samson scored a brilliant half-century, helping India secure a thrilling victory...</p>
   </article>
 
-  <!-- Latest news -->
-  <article class="news-card">
+  <!-- TECHNOLOGY NEWS -->
+  <article class="news-card" data-category="technology">
+    <h2 class="title">New AI technology launched in India</h2>
+    <p class="meta">By Damodar | 30 Jan 2026</p>
+    <p class="content">India launched a new AI system today...</p>
+  </article>
+
+  <!-- LOCAL NEWS -->
+  <article class="news-card" data-category="local">
+    <h2 class="title">Local road development started</h2>
+    <p class="meta">By Damodar | 30 Jan 2026</p>
+    <p class="content">New road construction started in the local area...</p>
+  </article>
+
+  <!-- GENERAL NEWS -->
+  <article class="news-card" data-category="news">
     <h2 class="title">T20 World Cup 2026: Exciting Matches Ahead</h2>
-    <p class="meta"><span class="author">By Damodar</span> | 29 Jan 2026</p>
-    <p class="content">The T20 World Cup 2026 is around the corner! Top teams are preparing to battle for the trophy. Stay tuned for latest match updates, team news, and highlights!</p>
-  </article>
-
-  <!-- Old news -->
-  <article class="news-card">
-    <h2>India wins cricket match today</h2>
     <p class="meta">By Damodar | 29 Jan 2026</p>
-    <p>India defeated the opponent team in a thrilling match today...</p>
-  </article>
-
-  <article class="news-card">
-    <h2>New AI technology launched in India</h2>
-    <p class="meta">By Damodar | 29 Jan 2026</p>
-    <p>A new AI product has been introduced in India today...</p>
+    <p class="content">The T20 World Cup 2026 is around the corner! Top teams are preparing to battle for the trophy...</p>
   </article>
 
 </main>
@@ -73,29 +74,49 @@
   <p>© 2026 Telugu Daily News | Managed by Damodar</p>
 </footer>
 
-<!-- JS for Voice + Language -->
 <script>
+/* CATEGORY FILTER */
+function filterNews(category) {
+  let allNews = document.querySelectorAll(".news-card");
+
+  allNews.forEach(function(news) {
+    if (category === "all") {
+      news.style.display = "block";
+    } else {
+      if (news.getAttribute("data-category") === category) {
+        news.style.display = "block";
+      } else {
+        news.style.display = "none";
+      }
+    }
+  });
+}
+
+/* VOICE SYSTEM */
 function readLatestNews(){
-  let title = document.querySelector(".title").innerText;
-  let content = document.querySelector(".content").innerText;
+  let firstNews = document.querySelector(".news-card:not([style*='none'])");
+  let title = firstNews.querySelector(".title").innerText;
+  let content = firstNews.querySelector(".content").innerText;
 
   let speech = new SpeechSynthesisUtterance(title + ". " + content);
-
   let lang = document.getElementById("langSelect").value;
   speech.lang = (lang === "en") ? "en-US" : "te-IN";
 
   window.speechSynthesis.speak(speech);
 }
 
+/* LANGUAGE CHANGE */
 function changeLanguage(){
   let lang = document.getElementById("langSelect").value;
+  let title = document.querySelector(".title");
+  let content = document.querySelector(".content");
 
   if(lang === "en"){
-    document.querySelector(".title").innerText = "Sanju Samson shines in latest match";
-    document.querySelector(".content").innerText = "Sanju Samson scored a brilliant half-century, helping India secure a thrilling victory...";
+    title.innerText = "Sanju Samson shines in latest match";
+    content.innerText = "Sanju Samson scored a brilliant half-century, helping India secure a thrilling victory...";
   } else {
-    document.querySelector(".title").innerText = "సంజూ శాంసన్ తాజా మ్యాచ్‌లో మెరిశాడు";
-    document.querySelector(".content").innerText = "సంజూ శాంసన్ అర్ధశతకం చేసి భారత్‌కు విజయం అందించాడు...";
+    title.innerText = "సంజూ శాంసన్ తాజా మ్యాచ్‌లో మెరిశాడు";
+    content.innerText = "సంజూ శాంసన్ అర్ధశతకం చేసి భారత్‌కు విజయం అందించాడు...";
   }
 }
 </script>
