@@ -1,177 +1,162 @@
 <!DOCTYPE html>
 <html lang="te">
 <head>
-  <meta charset="UTF-8">
-  <meta name="google-site-verification" content="e70E6N_V9iN-PB2QS-aj6hVUtyP-PyyD6jldXGfsrsw" />
-  <title>Telugu Daily News</title>
-  <meta name="description" content="Latest news and updates in Telugu | Managed by Damodar">
-  <meta name="keywords" content="Telugu news, cricket news, daily updates, Damodar">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body { font-family: Arial, sans-serif; margin:0; background:#f5f5f5; }
-    header { background:#222; color:white; padding:15px; text-align:center; position:relative; }
-    .logo { width:50px; vertical-align:middle; margin-right:10px; }
-    .tagline { font-size:14px; color:#ccc; margin:5px 0; }
-    nav { background:#444; padding:10px; text-align:center; }
-    nav button { color:white; background:#666; border:none; margin:5px; padding:8px 12px; cursor:pointer; border-radius:5px; font-weight:bold; }
-    .controls { margin-top:10px; }
-    .controls select, .controls button { padding:5px 10px; margin:3px; border-radius:5px; }
-    .news-card { background:white; margin:15px; padding:15px; border-radius:5px; }
-    .news-card h2 { color:#222; }
-    .meta { font-size:12px; color:gray; }
-    .news-photo { width:100%; max-height:200px; object-fit:cover; margin-bottom:10px; border-radius:5px; }
-    footer { background:#222; color:white; text-align:center; padding:10px; margin-top:20px; }
-    .share-buttons button { margin:5px; padding:5px 8px; border-radius:5px; }
-    #localForm { display:none; margin:15px; padding:15px; background:#eee; border-radius:5px; }
-  </style>
+<meta charset="UTF-8">
+<meta name="google-site-verification" content="e70E6N_V9iN-PB2QS-aj6hVUtyP-PyyD6jldXGfsrsw" />
+<title>Telugu Daily News</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body { font-family: Arial, sans-serif; margin:0; background:#f5f5f5; }
+header { background:#222; color:white; padding:15px; text-align:center; position:relative; }
+.logo { width:50px; vertical-align:middle; margin-right:10px; }
+.tagline { font-size:14px; color:#ccc; margin:5px 0; }
+nav { background:#444; padding:10px; text-align:center; }
+nav button { color:white; background:#666; border:none; margin:5px; padding:8px 12px; cursor:pointer; border-radius:5px; font-weight:bold; }
+.controls { margin-top:10px; }
+.controls select, .controls button { padding:5px 10px; margin:3px; border-radius:5px; }
+.news-card { background:white; margin:15px; padding:15px; border-radius:5px; position:relative; }
+.news-card h2 { color:#222; }
+.meta { font-size:12px; color:gray; }
+.news-photo { width:100%; max-height:200px; object-fit:cover; margin-bottom:10px; border-radius:5px; }
+footer { background:#222; color:white; text-align:center; padding:10px; margin-top:20px; }
+.share-buttons { position:absolute; top:10px; right:10px; }
+.share-buttons button { margin-left:5px; padding:3px 6px; border-radius:3px; font-size:12px; }
+#localForm { display:none; margin:15px; padding:15px; background:#eee; border-radius:5px; }
+</style>
 </head>
+
 <body>
 
 <header>
-  <img src="logo.png" alt="Telugu Daily News Logo" class="logo">
-  <h1>Telugu Daily News</h1>
-  <p class="tagline">Latest Updates in Telugu</p>
+<img src="logo.png" alt="Telugu Daily News Logo" class="logo">
+<h1>Telugu Daily News</h1>
+<p class="tagline">Latest Updates in Telugu</p>
 
-  <!-- Category Nav -->
-  <nav>
-    <button onclick="filterNews('all')">News</button>
-    <button onclick="filterNews('cricket')">Cricket</button>
-    <button onclick="filterNews('technology')">Technology</button>
-    <button onclick="filterNews('local')">Local</button>
-  </nav>
+<nav>
+  <button onclick="filterNews('all')">News</button>
+  <button onclick="filterNews('cricket')">Cricket</button>
+  <button onclick="filterNews('technology')">Technology</button>
+  <button onclick="filterNews('local')">Local</button>
+</nav>
 
-  <!-- Language + Voice -->
-  <div class="controls">
-    <select id="langSelect" onchange="changeLanguage()">
-      <option value="te">తెలుగు</option>
-      <option value="en">English</option>
-      <option value="hi">हिन्दी</option>
-    </select>
-    <button onclick="readLatestNews()">🔊 Read News</button>
-    <button onclick="toggleLocalForm()">Add Local News</button>
-  </div>
+<div class="controls">
+<select id="langSelect" onchange="changeLanguage()">
+  <option value="te">తెలుగు</option>
+  <option value="en">English</option>
+  <option value="hi">हिन्दी</option>
+</select>
+<button id="playBtn" onclick="playNews()">▶️ Play</button>
+<button id="pauseBtn" onclick="pauseNews()">⏸ Pause</button>
+<button onclick="toggleLocalForm()">Add Local News</button>
+</div>
 </header>
 
-<!-- Local News Form -->
 <div id="localForm">
-  <h3>Add Your Local News</h3>
-  <input type="text" id="localTitle" placeholder="Title" style="width:100%;margin-bottom:5px;">
-  <textarea id="localContent" placeholder="Content" style="width:100%;margin-bottom:5px;"></textarea>
-  <input type="text" id="localImg" placeholder="Image URL (optional)" style="width:100%;margin-bottom:5px;">
-  <button onclick="addLocalNews()">Submit</button>
+<h3>Add Your Local News</h3>
+<input type="text" id="localTitle" placeholder="Title" style="width:100%;margin-bottom:5px;">
+<textarea id="localContent" placeholder="Content" style="width:100%;margin-bottom:5px;"></textarea>
+<input type="text" id="localImg" placeholder="Image URL (optional)" style="width:100%;margin-bottom:5px;">
+<button onclick="addLocalNews()">Submit</button>
 </div>
 
 <main id="news-container">
-
-  <!-- Sample RSS / General News -->
-  <article class="news-card" data-category="news">
-    <h2 class="title">T20 World Cup 2026: Exciting Matches Ahead</h2>
-    <p class="meta">By Damodar | 29 Jan 2026</p>
-    <p class="content">The T20 World Cup 2026 is around the corner! Top teams are preparing to battle for the trophy...</p>
-  </article>
-
-  <article class="news-card" data-category="cricket">
-    <img src="https://example.com/sanju-news.jpg" alt="Sanju Samson" class="news-photo">
-    <h2 class="title">Sanju Samson shines in latest match</h2>
-    <p class="meta">By Damodar | 30 Jan 2026</p>
-    <p class="content">Sanju Samson scored a brilliant half-century, helping India secure a thrilling victory...</p>
-  </article>
-
-  <article class="news-card" data-category="technology">
-    <h2 class="title">New AI technology launched in India</h2>
-    <p class="meta">By Damodar | 30 Jan 2026</p>
-    <p class="content">India launched a new AI system today...</p>
-  </article>
-
+<!-- RSS and local/static news will appear here -->
 </main>
 
-<!-- Share Buttons -->
-<div class="share-buttons" style="text-align:center;">
-  <button onclick="share('whatsapp')">Share WhatsApp</button>
-  <button onclick="share('telegram')">Share Telegram</button>
-  <button onclick="share('copy')">Copy Link</button>
-</div>
-
 <footer>
-  <p>© 2026 Telugu Daily News | Managed by Damodar</p>
+<p>© 2026 Telugu Daily News | Managed by Damodar</p>
 </footer>
 
 <script>
-/* CATEGORY FILTER */
-function filterNews(category) {
-  let allNews = document.querySelectorAll(".news-card");
-  allNews.forEach(news => {
-    if(category==='all'|| news.getAttribute("data-category")===category){
-      news.style.display="block";
-    }else{ news.style.display="none"; }
-  });
-}
+let synth = window.speechSynthesis;
+let currentUtterance = null;
 
-/* VOICE SYSTEM */
-function readLatestNews(){
-  let firstNews = document.querySelector(".news-card:not([style*='none'])");
+function playNews(){
+  let firstNews = document.querySelector(".news-card");
   if(!firstNews) return;
-  let title = firstNews.querySelector(".title").innerText;
-  let content = firstNews.querySelector(".content").innerText;
   let lang = document.getElementById("langSelect").value;
-  let speech = new SpeechSynthesisUtterance(title + ". " + content);
-  speech.lang = (lang==='en')?'en-US':(lang==='hi')?'hi-IN':'te-IN';
-  window.speechSynthesis.speak(speech);
+  let text = firstNews.querySelector(".title").innerText + ". " + firstNews.querySelector(".content").innerText;
+  currentUtterance = new SpeechSynthesisUtterance(text);
+  currentUtterance.lang = (lang==='en')?'en-US':(lang==='hi')?'hi-IN':'te-IN';
+  synth.speak(currentUtterance);
 }
+function pauseNews(){ synth.cancel(); }
 
-/* LANGUAGE TRANSLATE */
-function changeLanguage(){
-  let lang = document.getElementById("langSelect").value;
-  document.querySelectorAll(".news-card").forEach(news=>{
-    let title = news.querySelector(".title");
-    let content = news.querySelector(".content");
-    // Example translation mapping
-    if(lang==='en'){
-      if(title.innerText.includes("సంజూ")) title.innerText="Sanju Samson shines in latest match";
-      if(content.innerText.includes("సంజూ")) content.innerText="Sanju Samson scored a brilliant half-century, helping India secure a thrilling victory...";
-    }else if(lang==='hi'){
-      if(title.innerText.includes("Sanju Samson")) title.innerText="संजू सैमसन ने शानदार प्रदर्शन किया";
-      if(content.innerText.includes("Sanju Samson")) content.innerText="संजू सैमसन ने अर्धशतक बनाकर भारत को जीत दिलाई...";
-    }else{ // Telugu
-      if(title.innerText.includes("Sanju Samson")) title.innerText="సంజూ శాంసన్ తాజా మ్యాచ్‌లో మెరిశాడు";
-      if(content.innerText.includes("Sanju Samson")) content.innerText="సంజూ శాంసన్ అర్ధశతకం చేసి భారత్‌కు విజయం అందించాడు...";
-    }
+function filterNews(category){
+  document.querySelectorAll(".news-card").forEach(n=>{
+    n.style.display=(category==='all'|| n.getAttribute("data-category")===category)?'block':'none';
   });
 }
 
-/* LOCAL NEWS FORM */
 function toggleLocalForm(){
-  let form=document.getElementById("localForm");
-  form.style.display=(form.style.display==="block")?"none":"block";
+  let f=document.getElementById("localForm");
+  f.style.display=(f.style.display==="block")?"none":"block";
 }
 function addLocalNews(){
-  let title=document.getElementById("localTitle").value;
-  let content=document.getElementById("localContent").value;
-  let img=document.getElementById("localImg").value;
-  if(!title||!content){ alert("Please enter title and content"); return; }
-  let container=document.getElementById("news-container");
-  let article=document.createElement("article");
-  article.className="news-card";
-  article.setAttribute("data-category","local");
-  let html=`${img?'<img src="'+img+'" class="news-photo">':''}
-            <h2 class="title">${title}</h2>
-            <p class="meta">By Damodar | 2026</p>
-            <p class="content">${content}</p>`;
-  article.innerHTML=html;
-  container.prepend(article);
+  let t=document.getElementById("localTitle").value;
+  let c=document.getElementById("localContent").value;
+  let i=document.getElementById("localImg").value;
+  if(!t||!c){ alert("Enter title & content"); return; }
+  let art=document.createElement("article");
+  art.className="news-card"; art.setAttribute("data-category","local");
+  art.innerHTML=`${i?'<img src="'+i+'" class="news-photo">':''}<h2 class="title">${t}</h2><p class="meta">By Damodar | 2026</p><p class="content">${c}</p>
+  <div class="share-buttons">
+    <button onclick="share(this,'whatsapp')">WhatsApp</button>
+    <button onclick="share(this,'telegram')">Telegram</button>
+    <button onclick="share(this,'copy')">Copy</button>
+  </div>`;
+  document.getElementById("news-container").prepend(art);
   document.getElementById("localForm").style.display="none";
   document.getElementById("localTitle").value="";
   document.getElementById("localContent").value="";
   document.getElementById("localImg").value="";
 }
 
-/* SHARE BUTTONS */
-function share(type){
+function share(btn,type){
   let url=window.location.href;
+  let newsCard=btn.closest(".news-card");
+  if(newsCard){
+    let t=newsCard.querySelector(".title").innerText;
+    url+="?news="+encodeURIComponent(t);
+  }
   if(type==='whatsapp'){ window.open(`https://wa.me/?text=${encodeURIComponent(url)}`,'_blank'); }
   else if(type==='telegram'){ window.open(`https://t.me/share/url?url=${encodeURIComponent(url)}`,'_blank'); }
   else if(type==='copy'){ navigator.clipboard.writeText(url); alert("Link copied!"); }
 }
+
+function changeLanguage(){
+  let lang=document.getElementById("langSelect").value;
+  document.querySelectorAll(".news-card").forEach(n=>{
+    let t=n.querySelector(".title"); let c=n.querySelector(".content");
+    if(lang==='en'){ if(t.innerText.includes("సంజూ")) t.innerText="Sanju Samson shines in latest match"; if(c.innerText.includes("సంజూ")) c.innerText="Sanju Samson scored a brilliant half-century..."; }
+    else if(lang==='hi'){ if(t.innerText.includes("Sanju Samson")) t.innerText="संजू सैमसन ने शानदार प्रदर्शन किया"; if(c.innerText.includes("Sanju Samson")) c.innerText="संजू सैमसन ने अर्धशतक बनाकर भारत को जीत दिलाई..."; }
+    else { if(t.innerText.includes("Sanju Samson")) t.innerText="సంజూ శాంసన్ తాజా మ్యాచ్‌లో మెరిశాడు"; if(c.innerText.includes("Sanju Samson")) c.innerText="సంజూ శాంసన్ అర్ధశతకం చేసి భారత్‌కు విజయం అందించాడు..."; }
+  });
+}
+
+// RSS fetch
+const feedUrl="https://example.com/rss.xml"; // replace with your feed
+fetch(feedUrl)
+.then(r=>r.text())
+.then(str=>{
+  let parser=new DOMParser();
+  let xml=parser.parseFromString(str,"text/xml");
+  let items=xml.querySelectorAll("item");
+  items.forEach(i=>{
+    let title=i.querySelector("title")?.textContent||"";
+    let desc=i.querySelector("description")?.textContent||"";
+    let art=document.createElement("article");
+    art.className="news-card"; art.setAttribute("data-category","news");
+    art.innerHTML=`<h2 class="title">${title}</h2><p class="meta">By RSS Feed</p><p class="content">${desc}</p>
+    <div class="share-buttons">
+      <button onclick="share(this,'whatsapp')">WhatsApp</button>
+      <button onclick="share(this,'telegram')">Telegram</button>
+      <button onclick="share(this,'copy')">Copy</button>
+    </div>`;
+    document.getElementById("news-container").prepend(art);
+  });
+});
 </script>
 
 </body>
